@@ -1,19 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views import View
-from .models import Post ,  Category
+from django.shortcuts import render
+from django.views import ListView
+from django.views.generic.edit import  CreateView , UpdateView , DeleteView 
+from .models import Post
 from django.urls import reverse_lazy
 
-
-class CategoriesListView(View):
-    def get(self, request):
-        category = Category.objects.all()
-
-        return render(request, 'categories.html', {'categorys': category})
-
-class BlogListView(View):
-    def get(self, request):
-        posts = Post.objects.all()
-        return render(request, 'blog.html', {'posts': posts})
+# Create your views here.
+class BlogListView(ListView):
+    model = Post
+    template_name = 'blog.html'
 
 class BlogDetailView(View):
     def get(self, request, pk):

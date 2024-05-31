@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.views import ListView
-from django.views.generic.edit import  CreateView , UpdateView , DeleteView 
+from django.views.generic.list import ListView
+from django.views.generic.edit import  CreateView , UpdateView , DeleteView
 from .models import Post
 from django.urls import reverse_lazy
 
-# Create your views here.
 class BlogListView(ListView):
     model = Post
     template_name = 'blog.html'

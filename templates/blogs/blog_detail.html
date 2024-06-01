@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ blog.title }}</h1>
+    <p style="font-family: monospace;">{{ blog.description }}</p>
+    {% if blog.image %}
+        <img src="{{ blog.image.url }}" alt="Blog Image" width="120px">
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
+    {% if user.is_staff %}
+        <a href="{% url 'blogs:blog-delete' blog.pk %}" class="btn btn-danger">Delete Blog</a>
+        <a href="{% url 'blogs:blog-update' blog.pk %}" class="btn btn-primary">Update Blog</a>
+    {% endif %}
+</div>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a1a1a;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4caf50;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: #d32f2f;
+    }
+    .messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .messages li {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

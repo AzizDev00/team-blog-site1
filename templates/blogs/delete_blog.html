@@ -7,9 +7,9 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Yes, delete</button>
         <a href="{% url 'blogs:blog-detail' post.pk %}" class="btn btn-secondary">Cancel</a>
+        <a href="{% url 'blogs:blog-list' %}" class="btn btn-green">Back to List</a>
     </form>
 </div>
-{% endblock %}
 
 <style>
     body {
@@ -64,5 +64,15 @@
     .btn-secondary:hover {
         background-color: #5a6268;
     }
+
+    .btn-green {
+        background-color: #28a745;
+    }
+
+    .btn-green:hover {
+        background-color: #218838;
+    }
 </style>
-{% endblock content %}
+{% endblock %}
+
+

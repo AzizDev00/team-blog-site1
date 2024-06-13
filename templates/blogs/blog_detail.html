@@ -10,8 +10,12 @@
     {% else %}
         <p>No image available.</p>
     {% endif %}
-    <p style="font-family: monospace;">Description: {{ post.description }}</p>
-    <p style="font-family: monospace;">Language: {{ post.category }}</p>
+    <div class="description">
+        <p class="section-title">Description:</p>
+        <p>{{ post.description }}</p>
+        <p class="section-title">Language:</p>
+        <p>{{ post.category }}</p>
+    </div>
     {% if user.is_staff %}
     <a href="{% url 'blogs:blog-delete' post.pk %}" class="btn btn-primary">Delete</a>
     <a href="{% url 'blogs:blog-update' post.pk %}" class="btn btn-primary">Update Post</a>
@@ -73,61 +77,45 @@
         border-radius: 5px;
     }
     .review-form {
-    margin-bottom: 20px;
-}
+        margin-bottom: 20px;
+    }
 
-.review-form label {
-    display: block;
-    margin-bottom: 5px;
-}
+    .review-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
-.review-form textarea {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-}
+    .review-form textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
 
-.review-form input[type="number"] {
-    width: 50px;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-}
+    .review-form input[type="number"] {
+        width: 50px;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
 
-.review-form input[type="submit"] {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4caf50;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .review-form input[type="submit"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-.review-form input[type="submit"]:hover {
-    background-color: #45a049;
-}
+    .review-form input[type="submit"]:hover {
+        background-color: #45a049;
+    }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #4caf50;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #45a049;
-}
-.star-rating {
+    .star-rating {
         font-size: 24px;
         display: inline-block;
         position: relative;
@@ -148,6 +136,44 @@
         content: '★★★★★';
         color: #ccc; 
     }   
+
+    .description {
+        font-family: monospace;
+        line-height: 1.6;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+
+    .description p {
+        margin: 10px 0;
+    }
+
+    .description .section-title {
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-top: 15px;
+    }
+
+    .btn-primary {
+        background-color: #4caf50;
+        border-color: #4caf50;
+    }
+
+    .btn-primary:hover {
+        background-color: #45a049;
+        border-color: #45a049;
+    }
+    img {
+    max-width: 300px;
+    min-width: 1000px;
+    min-height: 200px;
+    max-height: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 </style>
 
 <h2>Reviews</h2>
@@ -180,6 +206,7 @@
     {% else %}
         <p>No reviews yet.</p>
     {% endif %}
+</div>
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
